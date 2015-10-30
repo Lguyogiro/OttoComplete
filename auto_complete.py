@@ -1,6 +1,6 @@
 class AutoCompleter(object):
     """
-    Simple implementation of a trie for auto-complete, in python.
+    Simple implementation of a trie for auto-complete.
     Functionality:
         -insert a word into dictionary
         -check if dictionary contains a certain word
