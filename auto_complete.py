@@ -3,9 +3,9 @@ class AutoCompleter(object):
     Simple implementation of a trie for auto-complete, in python.
     Functionality:
         -insert a word into dictionary
-        -check if the dict contains your word
-        -given a prefix, suggest autocompletes, ranked by frequency of selection
-        -select a word given a prefix
+        -check if dictionary contains a certain word
+        -input a prefix, suggest list of complete words, ranked by frequency of selection given the prefix
+        -select a word given a prefix (update that word's frequency for the given prefix)
         -get count of words in dictionary
     """
     def __init__(self, end_token='<end>'):
@@ -32,7 +32,6 @@ class AutoCompleter(object):
 
     def suggest(self, prefix):
         words = []
-
         def nest(d, nested_prefix):
             for char in d:
                 if char == self.end_token:
@@ -42,7 +41,6 @@ class AutoCompleter(object):
                 else:
                     new_prefix = nested_prefix + char
                     nest(d[char], new_prefix)
-
         root = self.trie
         for char in prefix:
             if char in root:
